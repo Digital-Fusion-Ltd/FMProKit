@@ -1,2 +1,31 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
 
-.swiftpm/xcode/package.xcworkspace/xcuserdata/francescodemarco.xcuserdatad/UserInterfaceState.xcuserstate
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/
+Package.resolved
+
+# Xcode
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcscmblueprint
+*.moved-aside
+*.xccheckout
+
+# Xcode generated workspaces/projects for Swift packages
+*.xcodeproj/
+*.xcworkspace/
+
+# Editor and tooling
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
