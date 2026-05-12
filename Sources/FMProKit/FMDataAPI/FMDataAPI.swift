@@ -20,6 +20,8 @@ public class FMDataAPI: APIProtocol {
     var password: String
     /// a variable contains the database credentials in the format "USERNAME:PASSWORD"
     var authData: String
+    /// Additional HTTP headers used for requests
+    var additionalHTTPHeaders: [String: String]
     /// a variable contains the token that FileMaker generates to use the Data APIs
     var bearerToken: String
     /// a variable contains the HTTP request with headers, URL, AUTH and body
@@ -44,6 +46,7 @@ public class FMDataAPI: APIProtocol {
         self.password = password
         self.protocolVersion = version
         self.authData = ""
+        self.additionalHTTPHeaders = [:]
         self.baseUri = "https://\(hostname)/fmi/data/\(version.rawValue)/databases/\(database)"
         self.bearerToken = ""
         self.request = URLRequest(url: URL(string: "https://")!)

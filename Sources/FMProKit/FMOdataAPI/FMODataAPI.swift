@@ -26,6 +26,7 @@ public class FMODataAPI: APIProtocol {
     var protocolVersion: ProtocolVersion
     /// used to access to the database
     var authData: String
+    var additionalHTTPHeaders: [String: String]
 
     var request: URLRequest
     /// The class initializer used to setup all the information used to access and interface the Filemaker Database using OData.
@@ -44,6 +45,7 @@ public class FMODataAPI: APIProtocol {
         self.baseUri = "https://\(hostname)/fmi/odata/\(version.rawValue)/\(database)"
         self.request = URLRequest(url: URL(string: "https://")!)
         self.authData = "Basic \((username + ":" + password).data(using: .utf8)!.base64EncodedString())"
+        self.additionalHTTPHeaders = [:]
     }
 
     /// Returns the last URLRequest called using the package
@@ -60,6 +62,18 @@ public class FMODataAPI: APIProtocol {
         self.username = username
         self.password = password
         self.authData = "Basic \((username + ":" + password).data(using: .utf8)!.base64EncodedString())"
+    }
+
+    /// Update the Authorization header value used for OData requests.
+    /// - Parameter value: The complete Authorization header value, such as `Bearer <token>`.
+    public func updateAuthorizationHeader(_ value: String) {
+        self.authData = value
+    }
+
+    /// Update additional HTTP headers used for OData requests.
+    /// - Parameter headers: Header names and values to send with every request.
+    public func updateAdditionalHTTPHeaders(_ headers: [String: String]) {
+        self.additionalHTTPHeaders = headers
     }
     
     /// Returns the last response in JSON format using the package
@@ -84,3 +98,4 @@ public class FMODataAPI: APIProtocol {
             return fetchedData.value
     }
 }
+

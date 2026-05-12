@@ -25,8 +25,11 @@ protocol APIProtocol: ObservableObject {
     var protocolVersion: ProtocolVersion { get set }
     /// Used for the Authorization HTTP firld
     var authData: String { get set }
+    /// Additional HTTP headers used for requests
+    var additionalHTTPHeaders: [String: String] { get set }
     /// Store the last sent request
     var request: URLRequest { get set }
     /// Intizializer
     init(server: String, database: String, username: String, password: String, version: ProtocolVersion)
 }
+

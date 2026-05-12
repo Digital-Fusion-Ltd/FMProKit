@@ -20,7 +20,12 @@ extension APIProtocol {
         
         var request: URLRequest
         request = URLRequest(url: requestURL)
-        request.addValue(authData, forHTTPHeaderField: "Authorization")
+        if !authData.isEmpty {
+            request.addValue(authData, forHTTPHeaderField: "Authorization")
+        }
+        for (header, value) in additionalHTTPHeaders {
+            request.setValue(value, forHTTPHeaderField: header)
+        }
         request.httpMethod = method.rawValue
         
         self.request = request
@@ -52,7 +57,12 @@ extension APIProtocol {
         
         var request: URLRequest
         request = URLRequest(url: requestURL)
-        request.addValue(authData, forHTTPHeaderField: "Authorization")
+        if !authData.isEmpty {
+            request.addValue(authData, forHTTPHeaderField: "Authorization")
+        }
+        for (header, value) in additionalHTTPHeaders {
+            request.setValue(value, forHTTPHeaderField: header)
+        }
         request.httpMethod = method.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
@@ -73,3 +83,4 @@ extension APIProtocol {
         return data
     }
 }
+
